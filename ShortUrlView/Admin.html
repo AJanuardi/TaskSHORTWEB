@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <title>Admin Page</title>
+    </head>
+    <body>
+        <form method="POST" id="day">
+            <input type="submit" value="Day"/>
+        </form>
+        <form method="POST" id="month">
+            <input type="submit" value="Month"/>
+        </form>
+        <form method="POST" id="year">
+            <input type="submit" value="Year"/>
+        </form>
+        <canvas id="myChartDay" width="600" height="200"></canvas>
+        <br>
+        <canvas id="myChartMonth" width="600" height="200"></canvas>
+        <br>
+        <canvas id="myChartYear" width="600" height="200"></canvas>
+    </body>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+      $(document).ready(function(){
+        $("#day").submit(function(e){
+          e.preventDefault();
+          var date = new Date();
+          var json = {"createdat":date}
+          var hasil = JSON.stringify(json);
+          console.log(hasil);
+          var jwt = Cookies.get('token');
+          console.log(jwt);
+          $.ajax({
+            type: "POST",
+            url: 'http://192.168.17.102:5000/api/Admin/DataDay',
+            
+            data: hasil,
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend: function (xhr) 
+            {   //Include the bearer token in header
+            xhr.setRequestHeader("Authorization", 'Bearer '+ jwt);
+            },
+            success: function(data)
+            {
+                alert(data);
+var ctx = document.getElementById('myChartDay').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: Object.keys(data),
+        datasets: [{
+            label: 'Link Activity',
+            data: Object.values(data),
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+            }
+          });
+        });
+      });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#month").submit(function(e){
+        e.preventDefault();
+        var date = new Date();
+        var json = {"createdat":date}
+        var hasil = JSON.stringify(json);
+        console.log(hasil);
+        var jwt = Cookies.get('token');
+        console.log(jwt);
+        $.ajax({
+          type: "POST",
+          url: 'http://192.168.17.102:5000/api/Admin/DataMonth',
+          
+          data: hasil,
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend: function (xhr) 
+          {   //Include the bearer token in header
+          xhr.setRequestHeader("Authorization", 'Bearer '+ jwt);
+          },
+          success: function(data)
+          {
+              alert(data);
+var ctx = document.getElementById('myChartMonth').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+      labels: Object.keys(data),
+      datasets: [{
+          label: 'Link Activity',
+          data: Object.values(data),
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      }
+  }
+});
+          }
+        });
+      });
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#year").submit(function(e){
+        e.preventDefault();
+        var date = new Date();
+        var json = {"createdat":date}
+        var hasil = JSON.stringify(json);
+        console.log(hasil);
+        var jwt = Cookies.get('token');
+        console.log(jwt);
+        $.ajax({
+          type: "POST",
+          url: 'http://192.168.17.102:5000/api/Admin/DataYear',
+          
+          data: hasil,
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend: function (xhr) 
+          {   //Include the bearer token in header
+          xhr.setRequestHeader("Authorization", 'Bearer '+ jwt);
+          },
+          success: function(data)
+          {
+              alert(data);
+var ctx = document.getElementById('myChartYear').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+      labels: Object.keys(data),
+      datasets: [{
+          label: 'Link Activity',
+          data: Object.values(data),
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      }
+  }
+});
+          }
+        });
+      });
+    });
+
+</script>
+    
+</html>
