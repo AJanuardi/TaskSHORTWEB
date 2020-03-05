@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <title>Admin Page</title>
+    </head>
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+          <span class="font-semibold text-xl tracking-tight">UrSHORTER</span>
+        </div>
+        <div class="block lg:hidden">
+          <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          <div>
+          </div>
+        </div>
+    </nav>
+    <body>
+        <br>
+        <div class="text-center">
+        <label class="text-2xl font-bold">ShortUrl Statistics</label>
+        <form method="POST" id="date">
+            <div class="inline-block relative w-64">
+                <br>
+                <label for="Id">Id</label>
+                <input id="short" name="short" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="inline-block relative w-64">
+                <label for="year">Year</label>
+                <select id="year" name="year" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="2020" selected>2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                </select>
+              </div>
+            <div class="inline-block relative w-64">
+            <label for="month">Month</label>
+            <select id="month" name="month" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option value="0" selected>Pick Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            </div>
+            <div class="inline-block relative w-64">
+            <label for="day">Day</label>
+            <select id="day" name="day" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option value="0" selected>Pick Day</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+            </select>
+            </div>
+            <input type="submit" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" value="Report">
+        </form>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                <div class="col-md-4">
+                    <table class="table-fixed">
+                        <thead>
+                          <tr>
+                            <th class="w-1/5 px-1 py-1">Id</th>
+                            <th class="w-1/5 px-1 py-1">Short Url</th>
+                            <th class="w-1/5 px-1 py-1">Original Url</th>
+                          </tr>
+                        </thead>
+                        <tbody id="t-ip-body"></tbody>
+                    </table>
+                </div>
+                <div class="col-4 text-center">
+                <br>
+                <h2>ShortUrl Report</h2>
+                <canvas id="myChart" width="400" height="100" ></canvas>
+                <br>
+                <h2>ShortUrl IP Tracking Report</h2>
+                <canvas id="myChart2" width="400" height="100" ></canvas>
+                </div>
+            </div>
+        </div>
+    </body>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#date").submit(function(e){
+        e.preventDefault();
+        var short = document.getElementById("short").value;
+        var day = document.getElementById("day").value;
+        var month = document.getElementById("month").value;
+        var year = document.getElementById("year").value;
+        var json = {"shortid":short,"year":year,"month":month,"day":day}
+        var js = {"sht": short}
+        var hasil = JSON.stringify(json);
+        var hsl = JSON.stringify(js);
+        console.log(hasil);
+        var jwt = Cookies.get('token');
+        console.log(jwt);
+        $.ajax({
+          type: "POST",
+          url: 'http://192.168.17.102:5000/api/Admin/Short',
+          data: hsl,
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend: function (xhr) 
+          {   //Include the bearer token in header
+          xhr.setRequestHeader("Authorization", 'Bearer '+ jwt);
+          },
+          success: function(data)
+          {
+              console.log();
+              alert("Data Successfully Get");
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+  type: 'bar',
+  data: {
+      labels: Object.keys(data),
+      datasets: [{
+          label: 'IP Activity',
+          data: Object.values(data),
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      }
+  }
+});
+          }
+        });
+      });
+    });
+
+</script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $("#date").submit(function(e){
+          e.preventDefault();
+          var short = document.getElementById("short").value;
+          var day = document.getElementById("day").value;
+          var month = document.getElementById("month").value;
+          var year = document.getElementById("year").value;
+          var json = {"shortid":short,"year":year,"month":month,"day":day}
+          var js = {"short": short}
+          var hasil = JSON.stringify(json);
+          var hsl = JSON.stringify(js);
+          console.log(hasil);
+          var jwt = Cookies.get('token');
+          console.log(jwt);
+          $.ajax({
+            type: "POST",
+            url: 'http://192.168.17.102:5000/api/Admin/Data',
+            data: hasil,
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend: function (xhr) 
+            {   //Include the bearer token in header
+            xhr.setRequestHeader("Authorization", 'Bearer '+ jwt);
+            },
+            success: function(data)
+            {
+                console.log(data);
+                alert("Data Successfully Get");
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: Object.keys(data),
+        datasets: [{
+            label: 'Link Activity',
+            data: Object.values(data),
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+            }
+          });
+        });
+      });
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+      $.ajax({
+              url: 'http://192.168.17.102:5000/api/Admin',
+              type: "GET",
+              dataType: 'json',
+          }).done(function(data){
+              for(i=0; i<data.length; i++){
+                  var tableContent = '<tr>'+
+                      '<td class="border px-4 py-2">'+ data[i].id+'</td>'+
+                      '<td class="border px-4 py-2">'+ data[i].shorturl +'</td>'+
+                      '<td class="border px-4 py-2">'+ data[i].url +'</td>'+
+                    '</tr>';
+                    $('#t-ip-body').append(tableContent);
+              }
+                
+          }).catch(function(err){
+              console.log(err);
+      });
+  })
+</script>
+<script type="text/javascript">
+      $(document).ready(function(){
+        $("#list").submit(function(e){
+          e.preventDefault();
+          var day = document.getElementById("day").value;
+          var month = document.getElementById("month").value;
+          var year = document.getElementById("year").value;
+          var json = {"year":year,"month":month,"day":day}
+          var hasil = JSON.stringify(json);
+          console.log(hasil);
+          var jwt = Cookies.get('token');
+          console.log(jwt);
+          $.ajax({
+            type: "POST",
+            url: 'http://192.168.17.102:5000/api/Admin/Link',
+            data: hasil,
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend: function (xhr) 
+            {   //Include the bearer token in header
+            xhr.setRequestHeader("Authorization", 'Bearer '+ jwt);
+            },
+            success: function(data)
+            {
+                console.log("Successfully Get Data");
+            }
+          });
+        });
+      });
+</script>
+</html>
